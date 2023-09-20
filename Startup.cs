@@ -1,5 +1,6 @@
 namespace LetsGo
 {
+    
     public class Startup
     {
         private readonly IWebHostEnvironment _env;

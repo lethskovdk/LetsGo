@@ -1,14 +1,38 @@
 import { defineConfig } from 'vite'
-import { resolve } from 'path'
+import react from '@vitejs/plugin-react'
+import path from 'path';
 
-export default defineConfig({
+const root = path.join(__dirname, './');
+const main = path.resolve(__dirname, 'src', 'main.tsx');
+
+// https://vitejs.dev/config/
+export default defineConfig(({ command, mode }) => ({
+  plugins: [react()],
+  publicDir: command === 'build' ? false : 'src/assets',
+   root: root,
+  resolve: {
+    extensions: ['.js', '.jsx', '.tsx', '.ts'],
+  },
+  server: {
+    port: 3000
+  },
+
   build: {
-    outDir: '../LetsGo/wwwroot/app/', // inside the Umbraco project
-    emptyOutDir: true, // needs to be explicitly set because it’s outside of ./
+    outDir: './dist/umbraco-app',
+    minify: mode === 'development' ? false : 'terser',
+    brotliSize: false,
+    manifest: false,
+    sourcemap: command === 'serve' ? 'inline' : false,
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'main.js')
-      }
-    }
-  }
-})
+        main: main
+      },
+      output: {
+        assetFileNames: 'assets/[name][extname]',
+        chunkFileNames: 'chunks/[name].[hash].js',
+        entryFileNames: 'js/[name].js',
+      },
+    },
+  },
+
+}));
