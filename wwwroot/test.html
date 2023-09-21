@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend test</title>
+    <!--
+        Production setup for css, only works for razor pages. remember to include tag helpers in _ViewImports.cshtml
+
+        <link rel="stylesheet" href="~/dist/*.main.css" />
+    -->
+</head>
+<body>
+    
+    <div id="app"></div>
+      <!--
+        Production setup for css, only works for razor pages. remember to include tag helpers in _ViewImports.cshtml
+
+        <script type="module" crossorigin="true" asp-src-include="~/dist/*.main.js"></script>
+    -->
+    <!--Development-->
+    <script type="module" crossorigin="true" src="http://localhost:5173/src/main.ts"></script>
+    <!--Development-->
+</body>
+</html>
