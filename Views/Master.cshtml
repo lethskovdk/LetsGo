@@ -1,0 +1,33 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend test</title>
+    <!--
+        Production setup for css, only works for razor pages. remember to include tag helpers in _ViewImports.cshtml
+-->
+        <link rel="stylesheet" href="~/dist/*.main.css" />
+</head>
+<body> 
+    @await Html.PartialAsync("~/Views/Partials/header.cshtml")
+
+    <main>
+		@RenderBody()
+	</main>
+      <!--
+        Production setup for css, only works for razor pages. remember to include tag helpers in _ViewImports.cshtml
+	-->
+
+	<script type="module" crossorigin="true" asp-src-include="~/dist/*.main.js"></script>
+    <!--Development-->
+    <script type="module" crossorigin="true" src="http://localhost:5173/src/main.ts"></script>
+    <!--Development-->
+</body>
+</html>
